@@ -54,12 +54,16 @@ let isMusicPlaying = false;
 musicControl.addEventListener('click', () => {
   if (isMusicPlaying) {
     music.pause();
-    musicControl.textContent = '🎵';
+    musicControl.textContent = '🔇'; // Mute icon
+    musicControl.style.background = '#dc3545'; // Dark red for muted
+    musicControl.style.color = '#fff';
+    musicControl.dataset.playing = 'false';
   } else {
     music.play();
-    musicControl.textContent = '🎵';
-    musicControl.style.background = 'var(--primary-color)';
+    musicControl.textContent = '🎵'; // Music icon
+    musicControl.style.background = 'var(--primary-color)'; // Use theme pink color
     musicControl.style.color = '#fff';
+    musicControl.dataset.playing = 'true';
   }
   isMusicPlaying = !isMusicPlaying;
 });
@@ -69,8 +73,9 @@ document.addEventListener('click', () => {
   if (!isMusicPlaying && music.paused) {
     music.play();
     musicControl.textContent = '🎵';
-    musicControl.style.background = '#ff6b8b';
+    musicControl.style.background = 'var(--primary-color)';
     musicControl.style.color = '#fff';
+    musicControl.dataset.playing = 'true';
     isMusicPlaying = true;
   }
 }, { once: true });
@@ -167,8 +172,9 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         if (!isMusicPlaying) {
           music.play();
           musicControl.textContent = '🎵';
-          musicControl.style.background = '#ff6b8b';
+          musicControl.style.background = 'var(--primary-color)';
           musicControl.style.color = '#fff';
+          musicControl.dataset.playing = 'true';
           isMusicPlaying = true;
         }
       }
@@ -206,8 +212,9 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         if (!isMusicPlaying) {
           music.play();
           musicControl.textContent = '🎵';
-          musicControl.style.background = '#ff6b8b';
+          musicControl.style.background = 'var(--primary-color)';
           musicControl.style.color = '#fff';
+          musicControl.dataset.playing = 'true';
           isMusicPlaying = true;
         }
       }
