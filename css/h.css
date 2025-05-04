@@ -1,0 +1,402 @@
+/* Define root variables for easier theme changes */
+:root {
+    --bg-color: #fdf6f9; /* Softer background pink */
+    --primary-text: #333;
+    --heading-color: #e91e63; /* Slightly different pink */
+    --accent-color: orange; /* Flame color */
+    /* Removed unused cake variables */
+    --tulip-info-bg: rgba(255, 255, 255, 0.7); /* Semi-transparent white */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: var(--bg-color);
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Added Poppins */
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center; /* Center the wrapper */
+    align-items: center; /* Center the wrapper */
+    min-height: 100vh; /* Use min-height */
+    padding: 1rem; /* Add padding for small screens */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+  }
+  
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; /* Space between container and cake */
+    width: 100%;
+    max-width: 600px; /* Limit overall width */
+  }
+  
+  /* --- Modern Styling for Text Container --- */
+  .container {
+    text-align: center;
+    background: var(--tulip-info-bg);
+    padding: 1.5rem;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Soft shadow */
+    width: 95%; /* Responsive width */
+    max-width: 500px; /* Max width for text container */
+    position: relative; /* Keep relative for potential absolute children if added later */
+    z-index: 2; /* Ensure it's above cake if overlap occurs */
+  }
+  
+  .container img {
+    max-width: 80%; /* Responsive image size */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Limit image height */
+    border-radius: 10px; /* Slightly rounded corners */
+    margin-bottom: 1rem;
+  }
+  
+  .container h1 {
+    color: var(--heading-color);
+    font-family: 'Dancing Script', cursive; /* Keep special font for heading */
+    font-size: clamp(2rem, 6vw, 3rem); /* Responsive font size */
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .container p { /* Base style for paragraphs inside container */
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size */
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .anticipation-message {
+    margin-bottom: 1.5rem; /* Space below message */
+    font-weight: 300; /* Lighter font weight */
+  }
+  
+  .tulip-info {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 224, 230, 0.5); /* Light pinkish background */
+    border-radius: 8px;
+    font-size: clamp(0.85rem, 2.2vw, 1rem); /* Slightly smaller */
+    color: #6d4c41; /* Brownish text */
+  }
+  
+  .tulip-info p {
+      color: inherit; /* Inherit color from parent */
+      font-size: inherit; /* Inherit size from parent */
+      font-weight: 400;
+  }
+  
+  /* --- Sticky Note Overlay --- */
+ .content-wrapper {
+    /* Add position relative so absolute children are positioned relative to it */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+    max-width: 600px;
+  }
+ 
+  .sticky-note {
+    position: absolute; /* Position relative to content-wrapper */
+    top: 1rem; /* Adjust as needed */
+    right: 0rem; /* Adjust as needed */
+    width: 150px; /* Fixed width, adjust as needed */
+    background-color: #fffacd; /* Light yellow */
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+    transform: rotate(4deg); /* Slight rotation */
+    font-family: 'Caveat', cursive; /* Apply handwriting font */
+    font-size: 1.1rem; /* Slightly larger handwritten text */
+    line-height: 1.4;
+    color: #555;
+    z-index: 5; /* Ensure it's above container but potentially below cake if they overlap far down */
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+  }
+ 
+  .sticky-note:hover {
+     transform: rotate(2deg) scale(1.05); /* Slight lift/straighten on hover */
+  }
+ 
+  .sticky-note p {
+    /* Override default paragraph styles if needed */
+    font-size: inherit; /* Inherit font size */
+    color: inherit; /* Inherit color */
+    margin: 0; /* Remove default margin */
+    font-weight: 500; /* Caveat font weight */
+  }
+ 
+  /* Adjust note position on smaller screens */
+  @media (max-width: 600px) {
+    .sticky-note {
+      width: 120px;
+      font-size: 1rem;
+      padding: 0.8rem;
+      top: 0.5rem;
+      right: -0.5rem; /* Allow slight overlap off the content area */
+      transform: rotate(5deg); /* Increase rotation slightly */
+    }
+    .sticky-note:hover {
+       transform: rotate(3deg) scale(1.05);
+    }
+ 
+    /* Ensure cake scaling doesn't overlap note too much */
+     .cake {
+         transform: scale(0.75); /* Slightly smaller scale */
+         margin-bottom: -30px; /* Adjust margin more */
+         margin-top: 0; /* Reduce top margin */
+     }
+      .content-wrapper {
+          gap: 1rem; /* Reduce gap */
+          padding-bottom: 2rem; /* Add padding to bottom to avoid cake cutoff */
+      }
+  }
+ 
+   @media (max-width: 400px) {
+      .sticky-note {
+         width: 100px;
+         font-size: 0.9rem;
+         padding: 0.6rem;
+         top: 0.2rem;
+         right: -0.2rem;
+      }
+  }
+  /* --- Original Cake CSS (with SASS functions converted) --- */
+  .cake {
+    position: relative;
+    width: 250px; /* Original fixed width */
+    height: 200px; /* Original fixed height */
+    margin: 0 auto; /* Centered */
+    /* Removed transform: translateY(50px); - rely on gap/margin */
+  }
+  
+  .plate {
+    width: 270px;
+    height: 110px;
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    box-shadow: /* Converted SASS functions */
+        0 2px 0 #b3b3b3, /* darken(#ccc, 10%) */
+        0 4px 0 #b3b3b3, /* darken(#ccc, 10%) */
+        0 5px 40px rgba(0, 0, 0, 0.5); /* rgba(black, 0.5) */
+  }
+  
+  .cake > * {
+    position: absolute;
+  }
+  
+  .layer {
+    position: absolute;
+    display: block;
+    width: 250px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #553c13;
+    box-shadow:
+        0 2px 0px #5d4216,
+        0 4px 0px #4a3310,
+        0 6px 0px #493310,
+        0 8px 0px #48320f,
+        0 10px 0px #47320f,
+        0 12px 0px #46310f,
+        0 14px 0px #45310f,
+        0 16px 0px #44300e,
+        0 18px 0px #432f0e,
+        0 20px 0px #422f0e,
+        0 22px 0px #412e0e,
+        0 24px 0px #402d0d,
+        0 26px 0px #3f2d0d,
+        0 28px 0px #3e2c0d,
+        0 30px 0px #3d2b0d;
+  }
+  
+  .layer-top {
+    top: 0px;
+  }
+  
+  .layer-middle {
+    top: 33px;
+  }
+  
+  .layer-bottom {
+    top: 66px;
+  }
+  
+  .icing {
+    top: 2px;
+    left: 5px;
+    background-color: #f0e4d0;
+    width: 240px;
+    height: 90px;
+    border-radius: 50%;
+    /* Ensure icing is above layers */
+    z-index: 2;
+  }
+  
+  .icing:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    bottom: 6px;
+    left: 5px;
+    background-color: #f2e8d7;
+    box-shadow:
+        0 0 4px #f4ebdc,
+        0 0 4px #f4ebdc,
+        0 0 4px #f4ebdc;
+    border-radius: 50%;
+    z-index: 1; /* Below main icing */
+  }
+  
+  .drip {
+    display: block;
+    width: 50px;
+    height: 60px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #f0e4d0; /* Same as icing base */
+    /* Ensure drips are above layers */
+    z-index: 3;
+  }
+  
+  .drip1 {
+    top: 53px;
+    left: 5px;
+    transform: skewY(15deg);
+    height: 48px;
+    width: 40px;
+  }
+  
+  .drip2 {
+    top: 69px;
+    left: 181px;
+    transform: skewY(-15deg);
+  }
+  
+  .drip3 {
+    top: 54px;
+    left: 90px;
+    width: 80px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+  }
+  
+  .candle {
+    background-color: #7B020B;
+    width: 16px;
+    height: 50px;
+    border-radius: 8px / 4px;
+    top: -20px;
+    left: 50%;
+    margin-left: -8px;
+    z-index: 10;
+  }
+  
+  .candle:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #a8030f; /* Converted lighten(#7B020B, 10%) */
+  }
+  
+  .flame {
+    position: absolute;
+    background-color: var(--accent-color); /* Use variable */
+    width: 15px;
+    height: 35px;
+    border-radius: 10px 10px 10px 10px / 25px 25px 10px 10px;
+    top: -34px;
+    left: 50%;
+    margin-left: -7.5px;
+    z-index: 11; /* Ensure flame is above candle */
+    box-shadow: /* Use variable and standard rgba */
+        0 0 10px rgba(255, 165, 0, 0.5), /* orange */
+        0 0 20px rgba(255, 165, 0, 0.5),
+        0 0 60px rgba(255, 165, 0, 0.5),
+        0 0 80px rgba(255, 165, 0, 0.5);
+    transform-origin: 50% 90%;
+    animation: flicker 1s ease-in-out alternate infinite;
+  }
+  
+  @keyframes flicker { /* Keep original flicker */
+      0% {
+          transform: skewX(5deg);
+          box-shadow:
+              0 0 10px rgba(255, 165, 0, 0.2),
+              0 0 20px rgba(255, 165, 0, 0.2),
+              0 0 60px rgba(255, 165, 0, 0.2),
+              0 0 80px rgba(255, 165, 0, 0.2);
+      }
+      25% {
+          transform: skewX(-5deg);
+          box-shadow:
+              0 0 10px rgba(255, 165, 0, 0.5),
+              0 0 20px rgba(255, 165, 0, 0.5),
+              0 0 60px rgba(255, 165, 0, 0.5),
+              0 0 80px rgba(255, 165, 0, 0.5);
+      }
+      50% {
+          transform: skewX(10deg);
+          box-shadow:
+              0 0 10px rgba(255, 165, 0, 0.3),
+              0 0 20px rgba(255, 165, 0, 0.3),
+              0 0 60px rgba(255, 165, 0, 0.3),
+              0 0 80px rgba(255, 165, 0, 0.3);
+      }
+      75% {
+          transform: skewX(-10deg);
+          box-shadow:
+              0 0 10px rgba(255, 165, 0, 0.4),
+              0 0 20px rgba(255, 165, 0, 0.4),
+              0 0 60px rgba(255, 165, 0, 0.4),
+              0 0 80px rgba(255, 165, 0, 0.4);
+      }
+      100% {
+          transform: skewX(5deg);
+          box-shadow:
+              0 0 10px rgba(255, 165, 0, 0.5),
+              0 0 20px rgba(255, 165, 0, 0.5),
+              0 0 60px rgba(255, 165, 0, 0.5),
+              0 0 80px rgba(255, 165, 0, 0.5);
+      }
+  }
+  
+  /* --- Media Queries for Mobile --- */
+  @media (max-width: 600px) {
+      body {
+          padding: 0.5rem;
+           /* Adjust justify-content if content overflows vertically */
+           justify-content: flex-start;
+           padding-top: 2rem; /* Add padding at the top */
+           min-height: calc(100vh - 2rem); /* Adjust min-height */
+      }
+      .content-wrapper {
+          gap: 1.5rem; /* Adjust gap */
+      }
+      .container {
+          padding: 1rem;
+      }
+      .container img {
+          max-height: 150px; /* Smaller image on mobile */
+      }
+  
+      /* Scale the original cake down on mobile */
+      .cake {
+          transform: scale(0.8); /* Scale down the cake */
+          margin-bottom: -20px; /* Adjust margin to compensate for scaling */
+      }
+  }

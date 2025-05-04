@@ -1,0 +1,588 @@
+:root {
+  --primary-color: #ff6b8b; /* Soft Pink */
+  --secondary-color: #7c4dff; /* Lavender */
+  --accent-color: #ffb340; /* Warm Orange */
+  --light-pink: #fde7f0;   /* Lighter pink for gradients/hearts */
+  --light-blue: #e0f7fa;   /* Light blue for gradients */
+  --dark-color: #333333;    /* Darker grey for text */
+  --light-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+ /* Updated gradient for softer look */
+  background: linear-gradient(135deg, var(--light-pink) 0%, var(--light-blue) 100%);
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  color: var(--dark-color);
+  position: relative; /* Needed for absolutely positioned children like decorations */
+  padding: 1rem; /* Add some padding for very small screens */
+}
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000; /* Highest index */
+}
+
+.container {
+  width: 90%;
+  max-width: 700px; /* Slightly smaller max-width */
+  margin: 2rem auto;
+  text-align: center;
+  padding: clamp(1.5rem, 5vw, 2.5rem); /* Responsive padding */
+  background: rgba(255, 255, 255, 0.9); /* Slightly more opaque */
+  border-radius: 25px; /* Softer radius */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12); /* Enhanced shadow */
+  backdrop-filter: blur(8px); /* Slightly less blur */
+  position: relative;
+  z-index: 10;
+  overflow: hidden; /* Keep content clipped */
+}
+
+h1 {
+  color: var(--primary-color);
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.2rem, 7vw, 3.5rem); /* Adjusted clamp for better range */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem; /* Reduced margin */
+  position: relative;
+}
+
+/* Optional: Underline for H1 */
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; /* Closer to text */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px; /* Shorter */
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 3px;
+  opacity: 0.8; /* Slightly transparent */
+}
+
+
+p.message {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem); /* Responsive font size */
+  color: #555;
+  margin-bottom: 1.5rem; /* Reduced margin */
+  line-height: 1.7; /* Slightly more line height */
+  max-width: 500px; /* Limit width for readability */
+   margin-left: auto; /* Center the paragraph block */
+   margin-right: auto;
+}
+
+/* --- Cake Styling --- */
+.cake-container {
+  width: 100%;
+  /* Max width relative to viewport width, capped at 300px */
+  max-width: clamp(200px, 60vw, 300px);
+  margin: 1.5rem auto; /* Adjusted margin */
+  position: relative;
+  cursor: default; /* Default cursor, override in JS if fallback needed */
+}
+
+.plate {
+   /* Width relative to cake container */
+  width: 90%;
+  /* Height relative to width for aspect ratio */
+  padding-bottom: 10%; /* Creates height relative to width */
+  max-width: 270px; /* Max physical size */
+  height: 0; /* Height is controlled by padding-bottom */
+  background: #f0f0f0; /* Light grey plate */
+  border-radius: 50%; /* Elliptical */
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  margin-top: 100px; /* Push plate down to make space for cake */
+}
+
+.cake {
+  position: absolute; /* Position relative to cake-container */
+  /* Width relative to its container */
+  width: 85%;
+  max-width: 250px; /* Max physical size */
+  /* Height is determined by layers */
+  height: 120px; /* Keep height fixed or make relative */
+  left: 50%;
+  /* Corrected centering */
+  transform: translateX(-50%);
+  /* Position cake above the plate visually */
+  bottom: 10%; /* Adjust to sit visually on the plate */
+  z-index: 10;
+  /* Removed margin-left */
+}
+
+
+/* Cake Layers - Use percentages for width relative to .cake */
+.layer {
+  position: absolute;
+  height: 33%; /* Divide height among 3 layers */
+  border-radius: 8px; /* Softer radius */
+  box-shadow: 0 2px 0px rgba(0,0,0,0.1), /* Softer shadow */
+              inset 0 2px 3px rgba(0,0,0,0.05); /* Inner shadow */
+   left: 50%; /* Center within the parent */
+   transform: translateX(-50%); /* Centering technique */
+}
+
+.layer-1 { /* Bottom */
+  width: 100%; /* Full width of .cake */
+  background: #f8bbdb;
+  bottom: 0;
+  z-index: 3;
+   height: 35%; /* Slightly taller bottom layer */
+}
+
+.layer-2 { /* Middle */
+  width: 85%; /* Narrower */
+  background: #f1a9c4;
+  bottom: 33%; /* Stacked above layer 1 */
+  z-index: 4;
+}
+
+.layer-3 { /* Top */
+  width: 70%; /* Narrowest */
+  background: #ea8bad;
+  bottom: 66%; /* Stacked above layer 2 */
+  z-index: 5;
+   height: 32%; /* Slightly shorter top layer */
+}
+
+.icing {
+  position: absolute;
+  width: 100%;
+  height: 12px; /* Slightly thicker icing */
+  background-color: var(--light-color);
+  border-radius: 6px 6px 0 0; /* Rounded top edges */
+  top: -10px; /* Position above the layer */
+  z-index: 6;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+}
+
+/* --- Sprinkles --- */
+/* Sprinkles styling remains similar, positions might need tweaking
+   if cake dimensions change significantly. Consider using % for positions. */
+.sprinkles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 7;
+   overflow: hidden; /* Hide sprinkles outside layer */
+   border-radius: inherit; /* Inherit layer radius */
+}
+
+.sprinkle {
+  position: absolute;
+  width: 10px; /* Slightly larger */
+  height: 4px;
+  border-radius: 3px;
+  /* Use CSS variables for colors for consistency */
+}
+.sprinkle:nth-child(odd) { background: var(--accent-color); }
+.sprinkle:nth-child(even) { background: var(--secondary-color); }
+.sprinkle:nth-child(3n) { background: var(--primary-color); }
+
+/* Example sprinkle positions using percentages */
+.layer-1 .sprinkle:nth-child(1) { top: 15%; left: 10%; transform: rotate(20deg);}
+.layer-1 .sprinkle:nth-child(2) { top: 40%; left: 30%; transform: rotate(-10deg);}
+.layer-1 .sprinkle:nth-child(3) { top: 65%; left: 50%; transform: rotate(15deg);}
+.layer-1 .sprinkle:nth-child(4) { top: 25%; left: 70%; transform: rotate(-5deg);}
+.layer-1 .sprinkle:nth-child(5) { top: 50%; left: 90%; transform: rotate(30deg);}
+.layer-1 .sprinkle:nth-child(6) { top: 75%; left: 20%; transform: rotate(-15deg);}
+
+.layer-2 .sprinkle:nth-child(1) { top: 20%; left: 15%; transform: rotate(-10deg);}
+.layer-2 .sprinkle:nth-child(2) { top: 50%; left: 40%; transform: rotate(25deg);}
+.layer-2 .sprinkle:nth-child(3) { top: 70%; left: 65%; transform: rotate(-5deg);}
+.layer-2 .sprinkle:nth-child(4) { top: 30%; left: 85%; transform: rotate(10deg);}
+
+.layer-3 .sprinkle:nth-child(1) { top: 25%; left: 20%; transform: rotate(5deg);}
+.layer-3 .sprinkle:nth-child(2) { top: 60%; left: 50%; transform: rotate(-20deg);}
+.layer-3 .sprinkle:nth-child(3) { top: 40%; left: 80%; transform: rotate(15deg);}
+
+
+/* --- Candles & Flames --- */
+.candle-container {
+  position: absolute;
+  /* Position relative to top layer (.layer-3) */
+  bottom: 100%; /* Sit on top of layer 3 */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%; /* Relative to layer 3 width */
+  z-index: 20;
+  display: flex;
+  justify-content: space-around; /* Space out candles */
+   align-items: flex-end; /* Align candles at their base */
+   padding-bottom: 5px; /* Small space below candles */
+}
+
+.candle {
+  position: relative;
+  width: 10px; /* Slightly thinner */
+  height: 30px; /* Shorter */
+  border-radius: 4px;
+  /* Removed z-index, handled by container */
+}
+
+.candle-1 { background: linear-gradient(to bottom, #ff8aa0, var(--primary-color)); }
+.candle-2 { background: linear-gradient(to bottom, #ffc465, var(--accent-color)); }
+.candle-3 { background: linear-gradient(to bottom, #9670ff, var(--secondary-color)); }
+
+.flame {
+  position: absolute;
+  bottom: 95%; /* Position flame right above candle */
+  left: 50%;
+  transform: translateX(-50%); /* Center flame */
+  width: 14px;
+  height: 24px;
+  background: #ffdd78; /* Base flame color */
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Flame shape */
+  box-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800, 0 0 30px #ff5722; /* Enhanced glow */
+  transform-origin: center bottom;
+  animation: flicker 0.5s infinite alternate ease-in-out; /* Smoother flicker */
+}
+
+/* Improved Flicker Animation */
+@keyframes flicker {
+  0%, 100% {
+    transform: translateX(-50%) scaleY(1) rotate(-1deg);
+    opacity: 1;
+     filter: brightness(1.1);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.05) rotate(1deg);
+    opacity: 0.9;
+     filter: brightness(1);
+  }
+}
+
+/* --- UI Components --- */
+.status-container {
+  margin-top: 2rem; /* More space above status */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem; /* Reduced gap */
+}
+
+#status {
+  background: var(--primary-color);
+  color: var(--light-color);
+  padding: 0.8rem 1.8rem; /* Adjusted padding */
+  border-radius: 50px;
+  font-weight: 600;
+   font-size: clamp(0.85rem, 2.2vw, 1rem); /* Responsive font size */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  display: inline-block;
+   min-height: 40px; /* Ensure minimum height */
+   line-height: 1.4;
+}
+
+.volume-indicator {
+  width: clamp(180px, 50vw, 250px); /* Responsive width */
+  height: 10px; /* Slightly shorter */
+  background: rgba(0, 0, 0, 0.08); /* Lighter background */
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.volume-bar {
+  height: 100%;
+  width: 0%; /* Start at 0 */
+  background: linear-gradient(to right, var(--accent-color), var(--primary-color)); /* Warmer gradient */
+  border-radius: 5px;
+  transition: width 0.1s linear; /* Smoother transition */
+}
+
+.music-control {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: var(--light-color);
+  border: none;
+  border-radius: 50%;
+  width: 55px; /* Slightly smaller */
+  height: 55px;
+  cursor: pointer;
+  font-size: 1.4rem; /* Adjusted icon size */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+  z-index: 200; /* Ensure it's above other elements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+   color: var(--dark-color); /* Default icon color */
+}
+
+.music-control:hover {
+  transform: scale(1.1);
+  background: var(--primary-color); /* Use variable */
+  color: var(--light-color); /* Use variable */
+}
+.music-control:active {
+    transform: scale(1.05); /* Slight shrink on click */
+}
+
+/* --- Hearts Animation --- */
+.hearts-container {
+  position: fixed; /* Cover full viewport */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5; /* Below main content but above background */
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  /* Width/height set in JS */
+   /* Use variable for color */
+  transform: rotate(-45deg); /* Correct initial rotation for standard heart shape */
+  animation: floatHeart linear forwards;
+  /* Opacity set in JS */
+   bottom: -50px; /* Start below the screen */
+}
+
+/* Standard CSS Heart Shape */
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 100%; /* Use the size set in JS */
+  height: 100%; /* Use the size set in JS */
+  background-color: var(--heart-color); /* Use the CSS variable */
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -50%; /* Position relative to main square */
+  left: 0;
+}
+
+.heart::after {
+  top: 0;
+  left: 50%; /* Position relative to main square */
+}
+
+
+@keyframes floatHeart {
+  0% {
+    transform: rotate(-45deg) translateY(0) scale(0.5); /* Start smaller */
+    opacity: 0;
+  }
+  20% {
+      opacity: 0.8; /* Fade in */
+  }
+  90% {
+      opacity: 0.4; /* Start fading out */
+  }
+  100% {
+     /* Move further up, adjust -110vh as needed */
+    transform: rotate(-45deg) translateY(-110vh) scale(1.2); /* Grow slightly as it rises */
+    opacity: 0; /* Fully faded out */
+  }
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Tablet Sizes */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 1.5rem 1rem; /* Adjust padding */
+  }
+
+   h1 {
+       font-size: clamp(2rem, 6vw, 3rem);
+   }
+   p.message {
+       font-size: clamp(0.85rem, 2.2vw, 1rem);
+   }
+
+  /* Cake already uses relative/clamp sizing, less adjustment needed */
+   /* .cake { */
+       /* transform: translateX(-50%) scale(0.9);  */
+       /* Scale transform might conflict with responsive width, use width directly */
+   /* } */
+   /* .plate { width: 85%; } */
+
+    #status { padding: 0.7rem 1.5rem; }
+    .volume-indicator { width: clamp(160px, 45vw, 220px); }
+}
+
+/* Mobile Sizes */
+@media (max-width: 480px) {
+  body { padding: 0.5rem; } /* Less padding on very small screens */
+  .container {
+    width: 98%; /* Almost full width */
+    padding: 1rem 0.8rem;
+     border-radius: 20px; /* Slightly smaller radius */
+  }
+
+   h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    h1::after { width: 60px; bottom: -5px;} /* Adjust underline */
+
+   p.message {
+      font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+      line-height: 1.6;
+       margin-bottom: 1rem;
+   }
+
+
+  /* Cake adjustments for small screens */
+   .cake-container { max-width: clamp(180px, 55vw, 220px); margin: 1rem auto; }
+   .cake { height: 100px; } /* Reduce height slightly */
+    .plate { margin-top: 80px; } /* Adjust plate position */
+
+  .candle { width: 8px; height: 25px; }
+  .flame { width: 12px; height: 20px; }
+
+  .status-container { margin-top: 1.5rem; gap: 0.5rem; }
+  #status { padding: 0.6rem 1.2rem; }
+  .volume-indicator { width: clamp(150px, 40vw, 180px); }
+
+  .music-control {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    bottom: 15px;
+    right: 15px;
+  }
+
+   /* Optional: Hide or simplify background decorations */
+   .decoration {
+       transform: scale(0.6);
+       filter: blur(40px);
+       opacity: 0.3;
+   }
+   .decoration-3 { display: none; } /* Example: Hide one */
+}
+
+
+/* Wish Granted Animation */
+@keyframes wishGranted {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.9; } /* Bounce effect */
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.wish-granted {
+  animation: wishGranted 0.8s ease-in-out; /* Slightly faster animation */
+  background: var(--secondary-color) !important; /* Use variable */
+  color: var(--light-color) !important; /* Ensure text is light */
+}
+
+/* --- Background Decoration Blobs --- */
+.decoration {
+  position: fixed; /* Fixed position so they don't scroll */
+  border-radius: 50%;
+  filter: blur(80px); /* Increase blur for softer edges */
+  opacity: 0.35; /* Base opacity */
+  z-index: 1; /* Behind container but above body background */
+   transition: transform 0.5s ease-out; /* Add transition for scaling */
+}
+
+.decoration-1 { /* Pink */
+  width: clamp(250px, 40vw, 400px); /* Responsive size */
+  height: clamp(250px, 40vw, 400px);
+  background: var(--primary-color);
+  top: -10%; /* Position relative to viewport */
+  right: -15%;
+}
+
+.decoration-2 { /* Lavender */
+  width: clamp(200px, 35vw, 350px);
+  height: clamp(200px, 35vw, 350px);
+  background: var(--secondary-color);
+  bottom: -15%;
+  left: -10%;
+}
+
+.decoration-3 { /* Orange */
+  width: clamp(150px, 30vw, 300px);
+  height: clamp(150px, 30vw, 300px);
+  background: var(--accent-color);
+  top: 40%;
+  left: 5%;
+  transform: translateY(-50%); /* Vertical centering */
+   opacity: 0.3; /* Slightly less opaque */
+}
+
+/* --- Sticky Note Overlay --- */
+.sticky-note {
+    position: fixed; /* Position relative to the viewport */
+    top: 1.5rem;     /* Distance from top */
+    right: 1.5rem;   /* Distance from right */
+    width: 150px;
+    background-color: #fffacd; /* Light yellow */
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow */
+    transform: rotate(5deg); /* Slight rotation */
+    font-family: 'Caveat', cursive; /* Apply handwriting font */
+    font-size: 1.2rem; /* Adjust size */
+    line-height: 1.4;
+    color: #444; /* Darker grey text */
+    z-index: 999; /* High z-index to be on top */
+    transition: transform 0.3s ease;
+  }
+  
+  .sticky-note:hover {
+     transform: rotate(2deg) scale(1.05); /* Slight lift/straighten on hover */
+  }
+  
+  .sticky-note p {
+    /* Override default paragraph styles if needed */
+    font-size: inherit; /* Inherit font size */
+    color: inherit; /* Inherit color */
+    margin: 0; /* Remove default margin */
+    font-weight: 500; /* Caveat font weight */
+  }
+  
+  /* Adjust note for smaller screens */
+  @media (max-width: 600px) {
+    .sticky-note {
+      width: 110px;
+      font-size: 1rem;
+      padding: 0.7rem;
+      top: 1rem;
+      right: 1rem;
+      transform: rotate(6deg);
+    }
+     .sticky-note:hover {
+        transform: rotate(3deg) scale(1.05);
+     }
+  }
+  
+  @media (max-width: 400px) {
+      .sticky-note {
+          width: 95px;
+          font-size: 0.9rem;
+          padding: 0.5rem;
+          top: 0.5rem;
+          right: 0.5rem;
+      }
+  }
