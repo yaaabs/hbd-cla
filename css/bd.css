@@ -91,7 +91,6 @@ p.message {
 /* --- Cake Styling --- */
 .cake-container {
   width: 100%;
-  /* Max width relative to viewport width, capped at 300px */
   max-width: clamp(200px, 60vw, 300px);
   margin: 1.5rem auto; /* Adjusted margin */
   position: relative;
@@ -117,18 +116,13 @@ p.message {
 
 .cake {
   position: absolute; /* Position relative to cake-container */
-  /* Width relative to its container */
   width: 85%;
   max-width: 250px; /* Max physical size */
-  /* Height is determined by layers */
   height: 120px; /* Keep height fixed or make relative */
   left: 50%;
-  /* Corrected centering */
   transform: translateX(-50%);
-  /* Position cake above the plate visually */
   bottom: 10%; /* Adjust to sit visually on the plate */
   z-index: 10;
-  /* Removed margin-left */
 }
 
 
@@ -139,8 +133,8 @@ p.message {
   border-radius: 8px; /* Softer radius */
   box-shadow: 0 2px 0px rgba(0,0,0,0.1), /* Softer shadow */
               inset 0 2px 3px rgba(0,0,0,0.05); /* Inner shadow */
-   left: 50%; /* Center within the parent */
-   transform: translateX(-50%); /* Centering technique */
+  left: 50%; /* Center within the parent */
+  transform: translateX(-50%); /* Centering technique */
 }
 
 .layer-1 { /* Bottom */
@@ -178,8 +172,6 @@ p.message {
 }
 
 /* --- Sprinkles --- */
-/* Sprinkles styling remains similar, positions might need tweaking
-   if cake dimensions change significantly. Consider using % for positions. */
 .sprinkles {
   position: absolute;
   width: 100%;
@@ -190,7 +182,6 @@ p.message {
    overflow: hidden; /* Hide sprinkles outside layer */
    border-radius: inherit; /* Inherit layer radius */
 }
-
 .sprinkle {
   position: absolute;
   width: 10px; /* Slightly larger */
@@ -223,7 +214,6 @@ p.message {
 /* --- Candles & Flames --- */
 .candle-container {
   position: absolute;
-  /* Position relative to top layer (.layer-3) */
   bottom: 100%; /* Sit on top of layer 3 */
   left: 50%;
   transform: translateX(-50%);
@@ -231,8 +221,8 @@ p.message {
   z-index: 20;
   display: flex;
   justify-content: space-around; /* Space out candles */
-   align-items: flex-end; /* Align candles at their base */
-   padding-bottom: 5px; /* Small space below candles */
+  align-items: flex-end; /* Align candles at their base */
+  padding-bottom: 5px; /* Small space below candles */
 }
 
 .candle {
@@ -240,7 +230,6 @@ p.message {
   width: 10px; /* Slightly thinner */
   height: 30px; /* Shorter */
   border-radius: 4px;
-  /* Removed z-index, handled by container */
 }
 
 .candle-1 { background: linear-gradient(to bottom, #ff8aa0, var(--primary-color)); }
@@ -287,14 +276,14 @@ p.message {
 #status {
   background: var(--primary-color);
   color: var(--light-color);
-  padding: 0.8rem 1.8rem; /* Adjusted padding */
+  padding: 0.8rem 1.8rem; 
   border-radius: 50px;
   font-weight: 600;
-   font-size: clamp(0.85rem, 2.2vw, 1rem); /* Responsive font size */
+   font-size: clamp(0.85rem, 2.2vw, 1rem); 
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   display: inline-block;
-   min-height: 40px; /* Ensure minimum height */
+   min-height: 40px; 
    line-height: 1.4;
 }
 
@@ -328,11 +317,11 @@ p.message {
   font-size: 1.4rem; /* Adjusted icon size */
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
-  z-index: 200; /* Ensure it's above other elements */
+  z-index: 200; 
   display: flex;
   align-items: center;
   justify-content: center;
-   color: var(--dark-color); /* Default icon color */
+   color: var(--dark-color); 
 }
 
 .music-control:hover {
@@ -358,12 +347,9 @@ p.message {
 
 .heart {
   position: absolute;
-  /* Width/height set in JS */
-   /* Use variable for color */
   transform: rotate(-45deg); /* Correct initial rotation for standard heart shape */
   animation: floatHeart linear forwards;
-  /* Opacity set in JS */
-   bottom: -50px; /* Start below the screen */
+  bottom: -50px; /* Start below the screen */
 }
 
 /* Standard CSS Heart Shape */
@@ -371,20 +357,20 @@ p.message {
 .heart::after {
   content: '';
   position: absolute;
-  width: 100%; /* Use the size set in JS */
-  height: 100%; /* Use the size set in JS */
-  background-color: var(--heart-color); /* Use the CSS variable */
+  width: 100%; 
+  height: 100%; 
+  background-color: var(--heart-color); 
   border-radius: 50%;
 }
 
 .heart::before {
-  top: -50%; /* Position relative to main square */
+  top: -50%; 
   left: 0;
 }
 
 .heart::after {
   top: 0;
-  left: 50%; /* Position relative to main square */
+  left: 50%; 
 }
 
 
@@ -422,12 +408,7 @@ p.message {
        font-size: clamp(0.85rem, 2.2vw, 1rem);
    }
 
-  /* Cake already uses relative/clamp sizing, less adjustment needed */
-   /* .cake { */
-       /* transform: translateX(-50%) scale(0.9);  */
-       /* Scale transform might conflict with responsive width, use width directly */
-   /* } */
-   /* .plate { width: 85%; } */
+
 
     #status { padding: 0.7rem 1.5rem; }
     .volume-indicator { width: clamp(160px, 45vw, 220px); }
@@ -555,7 +536,6 @@ p.message {
   }
   
   .sticky-note p {
-    /* Override default paragraph styles if needed */
     font-size: inherit; /* Inherit font size */
     color: inherit; /* Inherit color */
     margin: 0; /* Remove default margin */
