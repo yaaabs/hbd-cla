@@ -1,3 +1,5 @@
+// HAPPY BIRTHDAY CLA <3
+
 const flames = [
   document.getElementById('flame1'),
   document.getElementById('flame2'),
@@ -11,7 +13,7 @@ const heartsContainer = document.getElementById('heartsContainer');
 let isBlown = false;
 let heartTimer = null;
 
-// Hearts animation
+// Hearts animations
 function createHeart() {
   const heart = document.createElement('div');
   heart.classList.add('heart');
