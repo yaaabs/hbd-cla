@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bd.css">
   
   </head>
@@ -25,66 +26,68 @@
     <p>Hope you love your surprise! ♡♡♡</p>
   </div>
   <div class="container">
- 
-
-    <h1>Happy Birthday, My Lover! 🌷🌷🌷🌷</h1>
-    <p class="message">Wishing you a day filled with joy, surprises, and lots of love! You deserve all the happiness in the world. I love you so much my sweetie avocado!</p>
-    <br>    <br>
-    <div class="cake-container">
-      <div class="plate"></div>
-      <div class="cake">
-        <div class="layer layer-1">
-          <div class="icing"></div>
-          <div class="sprinkles">
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
+    <div class="card animated-border">
+      <div class="card-body">
+        <h1>Happy Birthday, My Lover! 🌷🌷🌷🌷</h1>
+        <p class="message">Wishing you a day filled with joy, surprises, and lots of love! You deserve all the happiness in the world. I love you so much my sweetie avocado!</p>
+        <br>    <br>
+        <div class="cake-container">
+          <div class="plate"></div>
+          <div class="cake">
+            <div class="layer layer-1">
+              <div class="icing"></div>
+              <div class="sprinkles">
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+              </div>
+            </div>
+            <div class="layer layer-2">
+              <div class="icing"></div>
+              <div class="sprinkles">
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+              </div>
+            </div>
+            <div class="layer layer-3">
+              <div class="icing"></div>
+              <div class="sprinkles">
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+                <div class="sprinkle"></div>
+              </div>
+            </div>
+            <div class="candle-container">
+              <div class="candle candle-1">
+                <div class="flame" id="flame1"></div>
+              </div>
+              <div class="candle candle-2">
+                <div class="flame" id="flame2"></div>
+              </div>
+              <div class="candle candle-3">
+                <div class="flame" id="flame3"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="layer layer-2">
-          <div class="icing"></div>
-          <div class="sprinkles">
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
+        
+        <div class="status-container">
+          <div class="volume-indicator">
+            <div class="volume-bar" id="volumeBar"></div>
           </div>
-        </div>
-        <div class="layer layer-3">
-          <div class="icing"></div>
-          <div class="sprinkles">
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-            <div class="sprinkle"></div>
-          </div>
-        </div>
-        <div class="candle-container">
-          <div class="candle candle-1">
-            <div class="flame" id="flame1"></div>
-          </div>
-          <div class="candle candle-2">
-            <div class="flame" id="flame2"></div>
-          </div>
-          <div class="candle candle-3">
-            <div class="flame" id="flame3"></div>
-          </div>
+          <div id="status">Blow into your mic to blow out the candles and grant your wish! 🎂</div>
         </div>
       </div>
-    </div>
-    
-    <div class="status-container">
-      <div class="volume-indicator">
-        <div class="volume-bar" id="volumeBar"></div>
-      </div>
-      <div id="status">Blow into your mic to blow out the candles and grant your wish! 🎂</div>
     </div>
   </div>
   
@@ -92,6 +95,7 @@
   <button class="music-control" id="musicControl">🎵</button>
   <audio id="hbdMusic" src="audio/hbd.mp3" loop></audio>
   
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.5.1/confetti.browser.min.js"></script>
   <script src="js/bd.js"></script>
 </body>
