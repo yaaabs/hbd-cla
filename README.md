@@ -21,7 +21,7 @@ This project is a **three-page mini-website** filled with love, animation, and a
 ## 📅 Timeline
 
 - **Started**: May 4, 2025 (just hours before her birthday 🎯)
-- **Live**: From May 5, 2025 to May 5, 2026
+- **Live**: From May 5, 2025 to July 5, 2025
 
 ## 🌐 Hosting
 
