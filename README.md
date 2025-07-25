@@ -4,7 +4,7 @@ A simple, heartfelt website built with **HTML, CSS, and JavaScript** as a surpri
 
 ## 💡 What is it?
 
-This project is a **three-page mini-website** filled with love, animation, and a touch of interactivity. It's hosted live at **[itscladay.site](https://itscladay.site)** (available until **May 5th, 2026** 🌐).
+This project is a **three-page mini-website** filled with love, animation, and a touch of interactivity. It's hosted live at **[itscladay.site](https://itscladay.site)**.
 
 ### 🎁 Features
 
